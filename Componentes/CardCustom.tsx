@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, StyleSheet  } from "react-native";
 function CustomCard(props:{ titulo:string, corFundo:string, onPress:()=>void }) {
   return (
     <TouchableOpacity onPress={props.onPress} style={[styles.card, { backgroundColor: props.corFundo }]}>
@@ -6,3 +6,15 @@ function CustomCard(props:{ titulo:string, corFundo:string, onPress:()=>void }) 
     </TouchableOpacity>
   );
 }
+
+const styles = StyleSheet.create({
+  cardText :{
+    color: 'black',
+  },
+  corFundo :{
+    backgroundColor: 'light blue',
+  },
+  card:{
+    borderRadius: '20',
+  }
+})
