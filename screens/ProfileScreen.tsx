@@ -1,3 +1,20 @@
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+
+export default function ProfileScreen({ navigation }:any) {
+    return (
+        <View style={styles.container}>
+            <Text style={styles.title}>Tela de Perfil</Text>
+            <TouchableOpacity
+            style={styles.button}
+            onPress={()=> navigation.navigate('Home')}
+            >
+             <Text style ={styles.buttonText}>Voltar para Home</Text>   
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+
 const styles= StyleSheet.create({
     container:{
         backgroundColor:'#f5f5f5',
