@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "./screens/Homescreen";
+import HomeScreen from "./screens/HomeScreen";
 import DetailsScreen from "./screens/DetailsScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 
@@ -20,7 +20,11 @@ export default function App(){
         options={{title: 'Detalhes',headerStyle:{backgroundColor:'#dc3545'},
       headerTintColor:'#fff'}}
         />
-        <Stack.Screen name="Profile" component={ProfileScreen}/>
+        <Stack.Screen name="Profile"
+        component={ProfileScreen}
+        options={{title: 'Meu Perfil',headerStyle:{backgroundColor:'#28a745'},
+      headerTintColor:'#fff'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

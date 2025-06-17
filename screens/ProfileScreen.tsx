@@ -3,12 +3,19 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 export default function ProfileScreen({ navigation }:any) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Tela de Perfil</Text>
+            <Text style={styles.title}>Meu Perfil</Text>
             <TouchableOpacity
-            style={styles.button}
+            style={[styles.button,{backgroundColor:'#007bff'}]}
             onPress={()=> navigation.navigate('Home')}
             >
              <Text style ={styles.buttonText}>Voltar para Home</Text>   
+            </TouchableOpacity>
+
+            <TouchableOpacity
+            style={[styles.button,{backgroundColor:'#dc3545'}]}
+            onPress={()=> navigation.navigate('Details',{mensagem:'Olá do Perfil'})}
+            >
+                <Text style ={styles.buttonText}>Ir para Detalhes</Text>   
             </TouchableOpacity>
         </View>
     )

@@ -1,11 +1,20 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 export default function DetailsScreen({ navigation,route}:any) {
-    const{mensagem}=route.params||{};
+    const{item}=route.params||{};
+
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Tela de Detalhes</Text>
-            <Text style={styles.message}>{mensagem||'Nenhuma mensagem'}</Text>
+            <Text style={styles.title}>Detalhes do Item</Text>
+            {item ?(
+                <>
+                <Text style={styles.itemTitle}>{item.title}</Text>
+                <Text style={styles.itemDescription}>{item.description}</Text>
+                </>
+            ):(
+                <Text style={styles.message}>Nenhum item selecionado</Text>
+            )}
+            
             <TouchableOpacity
             style={styles.button}
             onPress={()=> navigation.goBack()}
@@ -13,7 +22,7 @@ export default function DetailsScreen({ navigation,route}:any) {
              <Text style ={styles.buttonText}>Voltar</Text>   
             </TouchableOpacity>
         </View>
-    )
+    );
 }
 
 const styles= StyleSheet.create({
@@ -29,6 +38,18 @@ const styles= StyleSheet.create({
         fontWeight:'bold',
         marginBottom:20,
         color:'#333',
+    },
+    itemTitle:{
+        fontSize:20,
+        fontWeight:'bold',
+        color:'#333',
+        marginBottom:10,
+    },
+    itemDescription:{
+        fontSize:16,
+        color:'#666',
+        marginBottom:20,
+        textAlign:'center',
     },
     button:{
         backgroundColor:'#dc3545',
