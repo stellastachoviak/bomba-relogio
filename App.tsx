@@ -35,6 +35,12 @@ export default function App(){
         options={{title: 'ScrollView',headerStyle:{
         backgroundColor:'#28a745'},headerTintColor:'#fff'}}
         />
+        <Stack.Screen 
+        name="Form"
+        component={FormScreen}
+        options={{title: 'Formulário',headerStyle:{
+        backgroundColor:'#007bff'},headerTintColor:'#fff'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )
