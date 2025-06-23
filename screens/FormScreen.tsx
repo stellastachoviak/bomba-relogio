@@ -6,7 +6,7 @@ export default function FormScreen({ navigation }:any) {
 
   useEffect(() => {
     if (nome.length < 3) {
-      Alert.alert('Atenção', 'Você digitou: ' + nome);
+      Alert.alert('Atenção', `Você digitou: ${nome}`);
     }
   }, [nome]);
 
@@ -14,7 +14,7 @@ export default function FormScreen({ navigation }:any) {
     if (nome.trim()) {
       navigation.navigate('Details', { mensagem: `Nome submetido: ${nome}` });
     } else {
-      Alert.alert('Erro', 'Por favor, insira um nome!');
+      Alert.alert('Erro', 'Por favor, insira um nome.');
     }
   };
 
@@ -25,6 +25,7 @@ export default function FormScreen({ navigation }:any) {
       <TextInput
         style={styles.input}
         placeholder="Digite seu nome"
+        value={nome}
         onChangeText={setNome}
       />
 
@@ -32,11 +33,17 @@ export default function FormScreen({ navigation }:any) {
         <Text style={styles.buttonText}>Enviar</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.button, { backgroundColor: '#dc3545' }]} onPress={() => navigation.navigate('Home')}>
+      <TouchableOpacity 
+      style={[styles.button, { backgroundColor: '#dc3545' }]} 
+      onPress={() => navigation.navigate('Home')}
+      >
         <Text style={styles.buttonText}>Voltar para Home</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.button, { backgroundColor: '#dc3545' }]} onPress={() => navigation.navigate('Scroll')}>
+      <TouchableOpacity 
+      style={[styles.button, { backgroundColor: '#dc3545' }]} 
+      onPress={() => navigation.navigate('Scroll')}
+      >
         <Text style={styles.buttonText}>Voltar para Scroll</Text>
       </TouchableOpacity>
     </View>
