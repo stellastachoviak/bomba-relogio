@@ -38,40 +38,29 @@ const styles= StyleSheet.create({
     scrollContainer:{
         flex:1,
     },
-    // FALTA COMPLETAR ESSE CSS, ELE ESTÁ NO SLIDE 12 DO REACT NATIVE 05!!!
     item:{
         backgroundColor:'#fff',
         padding:15,
         borderRadius:10,
         marginBottom:10,
+        borderWidth:1,
+        borderColor:'#ddd'
 
-    }
-    itemTitle:{
-        fontSize:20,
-        fontWeight:'bold',
-        color:'#333',
-        marginBottom:10,
     },
-    itemDescription:{
+    itemText:{
         fontSize:16,
-        color:'#666',
-        marginBottom:20,
-        textAlign:'center',
+        color:'#333',
     },
     button:{
-        backgroundColor:'#dc3545',
+        backgroundColor:'#007bff',
         paddingVertical:10,
         paddingHorizontal:20,
         borderRadius:5,
+        alignItems:'center',
     },
     buttonText:{
         color:'#fff',
         fontSize:16,
         fontWeight:'bold',
-    },
-    message: {
-        fontSize:18,
-        color:'#333',
-        marginBottom:20,
     },
 })

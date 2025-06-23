@@ -17,6 +17,12 @@ export default function ProfileScreen({ navigation }:any) {
             >
                 <Text style ={styles.buttonText}>Ir para Detalhes</Text>   
             </TouchableOpacity>
+            <TouchableOpacity
+            style={[styles.button,{backgroundColor:'#007bff'}]}
+            onPress={()=> navigation.navigate('Scroll')}
+            >
+                <Text style ={styles.buttonText}>Ir para ScrollView</Text>   
+            </TouchableOpacity>
         </View>
     )
 }
@@ -40,6 +46,7 @@ const styles= StyleSheet.create({
         paddingVertical:10,
         paddingHorizontal:20,
         borderRadius:5,
+        marginBottom:10,
     },
     buttonText:{
         color:'#fff',
