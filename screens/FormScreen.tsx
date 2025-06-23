@@ -3,23 +3,26 @@ import { useState, useEffect } from 'react';
 
 export default function FormScreen({ navigation }:any) {
   const [nome, setNome] = useState('');
-
-  useEffect(() => {
-    if (nome.length < 3) {
-      Alert.alert('Atenção', `Você digitou: ${nome}`);
-    }
-  }, [nome]);
-
+  const [email, setEmail] = useState('');
+  useEffect(()=>{
+    console.log('FormScreen montada!');
+    return()=> {
+      console.log('FormScreen desmontada!')
+    };
+  },[])
   const handleSubmit = () => {
-    if (nome.trim()) {
-      navigation.navigate('Details', { mensagem: `Nome submetido: ${nome}` });
+    if (nome.trim() && email.trim()) {
+      navigation.navigate('Details',{
+      mensagem: `Nome submetido: ${nome},Email:${email}`, 
+    });
     } else {
-      Alert.alert('Erro', 'Por favor, insira um nome.');
+      Alert.alert('Erro', 'Por favor, preencha todos os campos!');
     }
   };
 
   return (
     <View style={styles.container}>
+      
       <Text style={styles.title}>Formulário</Text>
       
       <TextInput
@@ -27,6 +30,13 @@ export default function FormScreen({ navigation }:any) {
         placeholder="Digite seu nome"
         value={nome}
         onChangeText={setNome}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Digite seu email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType='email-address'
       />
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>

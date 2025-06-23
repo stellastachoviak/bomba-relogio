@@ -11,10 +11,12 @@ const DATA=[
 
 export default function HomeScreen({ navigation}:any) {
     const [count,setCount]=useState(0);
-    
+   
     useEffect(()=>{
         if (count===10){
-            Alert.alert('Parabéns!','Você atingiu 10 cliques');
+            Alert.alert('Parabéns!','Você atingiu 10 cliques!');
+        }else if(count===0){
+            Alert.alert('Resetado','0 contador foi zerado!')
         }
     },[count]);
     
@@ -23,6 +25,7 @@ export default function HomeScreen({ navigation}:any) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Lista de Itens</Text>
+           
             <View style={styles.counterContainer}>
                 <Text style={styles.counterText}>Contador: {count}</Text>
                 <TouchableOpacity
@@ -30,6 +33,13 @@ export default function HomeScreen({ navigation}:any) {
                 onPress={() => setCount((prev) => prev + 1)}
                 >
                 <Text style={styles.buttonText}>Incrementar</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                style={[styles.counterButton, { backgroundColor: '#ffc107' }]}
+                onPress={() => setCount((prev) => Math.max(0,prev - 1))}
+                >
+                <Text style={styles.buttonText}>Decrementar</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -116,4 +126,5 @@ const styles= StyleSheet.create({
         borderRadius:5,
         marginBottom:10,
     },
+
 })

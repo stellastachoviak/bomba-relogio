@@ -1,8 +1,21 @@
+import { useState } from "react";
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity } from "react-native";
 
 export default function ScrollScreen({navigation}:any){
+ const[clickCount,setClickCount]=useState(0)
 return(
     <View style={styles.container}>
+        <Text style={styles.counterText}>Itens clicados:{clickCount}</Text>
+        <TouchableOpacity
+        key={index}
+        style={styles.item}
+        onPress={()=>{
+            setClickCount((prevCount)=>prevCount+1);
+            navigation.navigate('Details',{mensagem:`Item ${index+1}clicado!`})
+        }}
+        >
+
+        </TouchableOpacity>
         <Text style={styles.title}>Tela com ScrollView</Text>
         <ScrollView style={styles.scrollContainer}>
             {Array.from({ length:20}).map((_,index)=> (
@@ -62,5 +75,10 @@ const styles= StyleSheet.create({
         color:'#fff',
         fontSize:16,
         fontWeight:'bold',
+    },
+    counterText:{
+        fontSize:18,
+        color:'#333',
+        marginBottom:10,
     },
 })

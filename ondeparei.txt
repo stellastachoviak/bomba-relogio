@@ -1,0 +1,3 @@
+colocar o touchable opacity do slide 16 do React Native 06 no Array do ScrollScreen, 
+perguntar pro professor como q faz pra ajeitar os erros q deu
+e sla tentar fazer os exrcicios de consolidação
