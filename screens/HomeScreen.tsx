@@ -1,3 +1,6 @@
+
+// TODA PRIMEIRA PARTE PRATICA CONCLUIDA
+
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, Alert } from "react-native";
 import React, { useState, useEffect } from 'react';
 import CustomButton from '../Componentes/CustomButton';
