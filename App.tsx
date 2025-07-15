@@ -3,10 +3,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screens/HomeScreen";
 import DetailsScreen from "./screens/DetailsScreen";
 import AddTaskScreen from "./screens/AddTaskScreen";
+import { TaskProvider } from "./Contexts/TaskContext";
 const Stack = createStackNavigator();
 
 export default function App(){
   return(
+    <TaskProvider>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen 
@@ -30,5 +32,6 @@ export default function App(){
         
       </Stack.Navigator>
     </NavigationContainer>
+    </TaskProvider>
   )
 }

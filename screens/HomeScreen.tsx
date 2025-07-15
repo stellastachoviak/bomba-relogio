@@ -1,62 +1,36 @@
-
-// TODA PRIMEIRA PARTE PRATICA CONCLUIDA
-
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, Alert } from "react-native";
-import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, FlatList } from "react-native";
+import React, { useState } from 'react';
 import CustomButton from '../Componentes/CustomButton';
 import CustomModal from '../Componentes/CustomModal';
+import TaskCard from '../Componentes/TaskCard';
+import { useTasks } from '../Contexts/TaskContext';
 
-type Task = {
-  id: string;
-  title: string;
-  description: string;
-  done: boolean;
-};
+export default function HomeScreen({ navigation }: any) {
+  const { localTasks, deleteTask, toggleTaskCompletion } = useTasks(); // usando o contexto
 
-export default function HomeScreen({ navigation, route }: any) {
-  const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<'all' | 'pending' | 'completed'>('all');
   const [modalVisible, setModalVisible] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (route?.params?.novaTarefa) {
-      setTasks(prev => [...prev, route.params.novaTarefa]);
-      navigation.setParams({ novaTarefa: null });
-    }
-  }, [route?.params?.novaTarefa]);
-
-
-  const deleteTask = () => {
-    setTasks(prev => prev.filter(task => task.id !== taskToDelete));
-    setModalVisible(false);
-    setTaskToDelete(null);
-  };
-
-
-  const filteredTasks = tasks.filter(task => {
+ 
+  const filteredTasks = localTasks.filter(task => {
     if (filter === 'all') return true;
-    if (filter === 'pending') return !task.done;
-    if (filter === 'completed') return task.done;
+    if (filter === 'pending') return !task.completed;
+    if (filter === 'completed') return task.completed;
   });
 
- 
   const renderItem = ({ item }: any) => {
-    const isLocal = typeof item.id === 'string';
     return (
       <>
-        <Text style={styles.sourceText}>{!item.userId ? 'Local' : 'API'}</Text>
-
+        <Text style={styles.sourceText}>Local</Text>
         <TaskCard
           title={item.title}
-          completed={item.done}
-          onPress={isLocal ? () => navigation.navigate('Details', { task: item }) : null}
-          onToggle={isLocal ? () => toggleDone(item.id) : null}
+          completed={item.completed}
+          onPress={() => navigation.navigate('Details', { task: item })}
+          onToggle={() => toggleTaskCompletion(item.id)}
           onDelete={() => {
-            if (isLocal) {
-              setTaskToDelete(item.id);
-              setModalVisible(true);
-            }
+            setTaskToDelete(item.id);
+            setModalVisible(true);
           }}
         />
       </>
@@ -89,7 +63,7 @@ export default function HomeScreen({ navigation, route }: any) {
         />
       </View>
 
-   
+      
       <FlatList
         style={styles.list}
         data={filteredTasks}
@@ -97,20 +71,26 @@ export default function HomeScreen({ navigation, route }: any) {
         renderItem={renderItem}
       />
 
-    
+      
       <CustomButton
         title="Adicionar Tarefa"
         onPress={() => navigation.navigate('AddTask')}
         color="#28a745"
       />
 
-    
+      
       <CustomModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
         title="Confirmar Exclusão"
         message="Deseja realmente excluir esta tarefa?"
-        onConfirm={deleteTask}
+        onConfirm={() => {
+          if (taskToDelete) {
+            deleteTask(taskToDelete);
+            setModalVisible(false);
+            setTaskToDelete(null);
+          }
+        }}
       />
     </View>
   );
@@ -142,5 +122,4 @@ const styles = StyleSheet.create({
     color: '#999',
     marginBottom: 4,
   },
-  
 });
