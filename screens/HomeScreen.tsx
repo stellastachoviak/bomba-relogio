@@ -6,7 +6,7 @@ import TaskCard from '../Componentes/TaskCard';
 import { useTasks } from '../Contexts/TaskContext';
 
 export default function HomeScreen({ navigation }: any) {
-  const { localTasks, deleteTask, toggleTaskCompletion } = useTasks(); // usando o contexto
+  const { localTasks, deleteTask, toggleTaskCompletion } = useTasks();
 
   const [filter, setFilter] = useState<'all' | 'pending' | 'completed'>('all');
   const [modalVisible, setModalVisible] = useState(false);
